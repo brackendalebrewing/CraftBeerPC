@@ -113,8 +113,8 @@ class SatelliteController:
                 topic_key = str(message.topic).split("/")
                 try:
                     power=int(message.payload.decode())
-                    if power > 100: 
-                        power = 100
+                    if power > 255: 
+                        power = 255
                     if power < 0:
                         power = 0
                     await self.cbpi.actor.set_power(topic_key[2],power)

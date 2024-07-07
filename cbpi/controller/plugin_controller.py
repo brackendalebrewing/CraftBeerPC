@@ -72,6 +72,9 @@ class PluginController():
         :return: None
         '''
         logger.debug("Register %s Class %s" % (name, clazz.__name__))
+        
+        if issubclass(clazz, CBPiExtension):
+            self.c = clazz(self.cbpi)        
 
         if issubclass(clazz, CBPiActor):
             self.cbpi.actor.types[name] = self._parse_step_props(clazz, name)
@@ -93,8 +96,7 @@ class PluginController():
             self.cbpi.fermenter.steptypes[name] = self._parse_step_props(
                 clazz, name)
 
-        if issubclass(clazz, CBPiExtension):
-            self.c = clazz(self.cbpi)
+
 
     def _parse_property_object(self, p):
         if isinstance(p, Property.Number):

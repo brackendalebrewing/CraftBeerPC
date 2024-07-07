@@ -17,7 +17,7 @@ class ActorController(BasicController):
                 if item.power:
                     power = item.power
                 else:
-                    power = 100
+                    power = 255
             if item.instance.state is False:
                 await item.instance.on(power)
                 #await self.push_udpate()
